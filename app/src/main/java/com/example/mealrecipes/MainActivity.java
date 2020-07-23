@@ -23,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
         mealList.add(new Meal(R.drawable.cheesecake,"Чизкейк","Мини-чизкейк с дыней","30 минут"));
         mealList.add(new Meal(R.drawable.malinakeks,"Кекс","Кекс с малиной","1 час"));
         mealList.add(new Meal(R.drawable.adana,"Адана","Кебаб по турецки","30 минут"));
+        mealList.add(new Meal(R.drawable.mukeka, "Мукека", "бразильский рыбный суп с креветками","30 минут"));
+        mealList.add(new Meal(R.drawable.krambl,"Крамбл", "Крамбл с дыней и мюсли","35 минут"));
+        mealList.add(new Meal(R.drawable.bulka,"Булка","Чесночно-сырная булка с травами","2 часа и 20 минут"));
+        mealList.add(new Meal(R.drawable.cheesecake,"Чизкейк","Мини-чизкейк с дыней","30 минут"));
+        mealList.add(new Meal(R.drawable.malinakeks,"Кекс","Кекс с малиной","1 час"));
+        mealList.add(new Meal(R.drawable.adana,"Адана","Кебаб по турецки","30 минут"));
 
         //Recyclerview Adapter
         MealAdapter adapter=new MealAdapter(MainActivity.this,mealList);//указываем текущий активити чтобы связать с адаптером
