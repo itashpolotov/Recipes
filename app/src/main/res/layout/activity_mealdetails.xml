@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+
+
+    tools:context=".Mealdetails">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+
+        android:src="@drawable/adana"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mealName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meal name"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+    </TextView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/arbeitZeitLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        app:layout_constraintTop_toBottomOf="@+id/mealName"
+        tools:layout_editor_absoluteX="10dp">
+
+
+        <ImageView
+            android:id="@+id/clock"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:src="@drawable/time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/arbeitZeitCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_toRightOf="@+id/clock"
+
+            android:text="Arbeitzeit ca. "
+
+            android:textSize="15sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/clock"
+            app:layout_constraintTop_toTopOf="@+id/clock">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/arbeitZeit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@id/arbeitZeitCaption"
+            android:text="20 minuten"
+
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/arbeitZeitCaption"
+            app:layout_constraintStart_toEndOf="@+id/arbeitZeitCaption"
+            app:layout_constraintTop_toTopOf="@+id/arbeitZeitCaption" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ruheZeitLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        app:layout_constraintTop_toBottomOf="@+id/arbeitZeitLayout"
+        tools:layout_editor_absoluteX="10dp">
+
+
+        <ImageView
+            android:id="@+id/ruheClock"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:src="@drawable/time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/ruheZeitCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_toRightOf="@+id/ruheClock"
+
+            android:text="Ruhezeit ca. "
+
+            android:textSize="15sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ruheClock"
+            app:layout_constraintTop_toTopOf="@+id/ruheClock">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/ruheZeit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@id/ruheZeitCaption"
+            android:text="20 minuten"
+
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ruheZeitCaption"
+            app:layout_constraintStart_toEndOf="@+id/ruheZeitCaption"
+            app:layout_constraintTop_toTopOf="@+id/ruheZeitCaption" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/gesamtZeitLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        app:layout_constraintTop_toBottomOf="@+id/ruheZeitLayout"
+        tools:layout_editor_absoluteX="10dp">
+
+
+        <ImageView
+            android:id="@+id/gesamtClock"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:src="@drawable/time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/gesamtZeitCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_toRightOf="@+id/gesamtClock"
+
+            android:text="gesamtzeit ca. "
+
+            android:textSize="15sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/gesamtClock"
+            app:layout_constraintTop_toTopOf="@+id/gesamtClock">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/gesamtZeit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@id/gesamtZeitCaption"
+            android:text="20 minuten"
+
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/gesamtZeitCaption"
+            app:layout_constraintStart_toEndOf="@+id/gesamtZeitCaption"
+            app:layout_constraintTop_toTopOf="@+id/gesamtZeitCaption" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/zutatenCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Zutaten für "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/portion"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gesamtZeitLayout">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/portion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/zutatenCaption"
+        app:layout_constraintEnd_toStartOf="@+id/portionen"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/zutatenCaption"
+        app:layout_constraintTop_toBottomOf="@+id/gesamtZeitLayout"
+        app:layout_constraintTop_toTopOf="@+id/zutatenCaption">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/portionen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Portionen"
+        android:textSize="18sp"
+
+
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/portion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/portion">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/zutaten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+        android:text=" 1 kg	Fleisch (Nackenfleisch von Schwein, Rind oder Lamm),\n frisch
+3	Gemüsezwiebel(n)
+500 ml	Milch
+1 Schuss	Essig
+Salz und Pfeffer aus der Mühle
+1 etwas	Tomatenmark
+1	Kiwi(s)
+"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zutatenCaption" />
+
+    <TextView
+        android:id="@+id/zubereitungCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Zubereitung "
+        android:textSize="18sp"
+
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zutaten">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/zubereitung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_marginTop="10dp"
+        android:text="Den Schweinenacken in nicht zu kleine Würfel schneiden. Die Zwiebeln halbieren und in halbe Ringe schneiden.
+
+Tomatenmark, Salz, Pfeffer und einen Spritzer Essig mischen und mit der Hand schön in das Fleisch einmassieren. Alles in eine große Schüssel geben und mit Milch auffüllen. Zugedeckt über Nacht an einem kühlen Ort einziehen lassen.
+
+Am nächsten Tag die Marinade probieren und evtl. mit Salz und Pfeffer nachwürzen. Ca. 2 Stunden vorm Grillen die Kiwi schälen und in kleine Stücke schneiden. In die Marinade geben und ebenfalls in das Fleisch einmassieren. Bitte die Kiwi nicht zu lange (max. 2 Stunden) in der Marinade lassen, da sonst das Fleisch zu weich wird und vom Spieß fällt.
+
+Dann das Fleisch auf Spieße ziehen und grillen. Kurz vor dem Verzehr mit Essigwasser beträufeln. Sehr lecker schmeckt auch, frische Zwiebelringe in leichtes Essigwasser einzulegen und zum Schaschlik servieren."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zubereitungCaption" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

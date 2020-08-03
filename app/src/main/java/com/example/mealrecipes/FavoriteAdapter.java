@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealHolder> {
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder> {
 
-    List<Meal> mealList;
+    List<Meal> favoriteList;
     Context context; //я мог пользоваться привилегиями Activity
     RecyclerOnClickListener listener;
 
-    public MealAdapter(Context context, List<Meal> mealList) {
-        this.mealList = mealList;
+    public FavoriteAdapter(Context context, List<Meal> favoriteList) {
+        this.favoriteList = favoriteList;
         this.context = context;
     }
 
@@ -29,52 +29,49 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealHolder> {
 
     @NonNull
     @Override
-    public MealHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.activity_meal, parent, false); //use activity_meal
+    public FavoriteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.activity_favorite_meal, parent, false); //use activity_meal
 
-        return new MealHolder(view, listener);
+        return new FavoriteHolder(view, listener);
     }
 
     //процесс соединения данных с макетом
     @Override
-    public void onBindViewHolder(@NonNull MealHolder holder, int position) {
-        holder.imageView.setImageResource(mealList.get(position).getImage());
-        holder.mealName.setText(mealList.get(position).getMealName());
-        holder.mealDescription.setText(mealList.get(position).getMealDescription());
-        holder.mealtime.setText(mealList.get(position).getArbeitzeit());
+    public void onBindViewHolder(@NonNull FavoriteHolder holder, int position) {
+        holder.imageView.setImageResource(favoriteList.get(position).getImage());
+        holder.mealName.setText(favoriteList.get(position).getMealName());
+        holder.mealDescription.setText(favoriteList.get(position).getMealDescription());
+        holder.mealtime.setText(favoriteList.get(position).getArbeitzeit());
 
     }
 
     //узнает сколько блоков в итоге у нас будет
     @Override
     public int getItemCount() {
-        return mealList.size();
+        return favoriteList.size();
     }
 
-    //данный класс позволяет нам сопоставить данные с View элементами activity_meal.xml
-    public static class MealHolder extends RecyclerView.ViewHolder {
-        ImageView imageView, star,star_filled;
+    //данный класс позволяет нам сопоставить данные с View элементами activity_favorite.xml
+    public static class FavoriteHolder extends RecyclerView.ViewHolder {
+        ImageView imageView, delete;
         TextView mealName;
         TextView mealDescription;
         TextView mealtime;
 
 
-        public MealHolder(@NonNull View itemView, final RecyclerOnClickListener listener) {
+        public FavoriteHolder(@NonNull View itemView, final RecyclerOnClickListener listener) {
             super(itemView); //example;
             imageView = itemView.findViewById(R.id.image);
             mealName = itemView.findViewById(R.id.mealName);
             mealDescription = itemView.findViewById(R.id.mealDescription);
             mealtime = itemView.findViewById(R.id.mealtime);
-            star = itemView.findViewById(R.id.star_empty);
-            star_filled=itemView.findViewById(R.id.star_filled);
-            star.setOnClickListener(new View.OnClickListener() {
+            delete = itemView.findViewById(R.id.delete_image);
+            delete.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    listener.onStarClick(position);
-                   star.setVisibility(View.INVISIBLE);
-                   star_filled.setVisibility((View.VISIBLE));
+                    listener.onDeleteClick(position);
                 }
             });
 
@@ -90,13 +87,12 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealHolder> {
         }
     }
 
-
     public interface RecyclerOnClickListener {
         void onItemClick(int position);
 
-        void onStarClick(int position);
 
 
+        void onDeleteClick(int position);
     }
 
 
