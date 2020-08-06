@@ -73,7 +73,7 @@ public class Favorite extends AppCompatActivity {
                     }
                 }
                 favoriteList.remove(position);
-              
+
                 favoriteAdapter.notifyItemRemoved(position);
             }
 
