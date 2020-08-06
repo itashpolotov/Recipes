@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.mealrecipes.Util.DatabaseHandler;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     List<Meal> mealList = new ArrayList<>();
     List<Meal> favoriteList = new ArrayList();
+    DatabaseHandler handler=new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        fillMealList(mealList); //fill list with data
-
+        fillMealList(); //fill list with data
+        mealList=handler.getAllMeals();
 
         //Recyclerview Adapter
         final MealAdapter adapter = new MealAdapter(MainActivity.this, mealList);//указываем текущий активити чтобы связать с адаптером
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public void onStarClick(int position) {
                 //           favoriteList.add(mealList.get(position));
                 mealList.get(position).setStarred(true);
-
+                handler.updateMeal(mealList.get(position));
 
             }
 
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
 
     }
 
@@ -82,16 +87,16 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.item1:
                 Intent intentFavorite = new Intent(MainActivity.this, Favorite.class);
-                for (Meal meal : mealList) {
+   /*             for (Meal meal : mealList) {
                     if (meal.isStarred()) {
                         favoriteList.add(meal);
                     }
                 }
 
                 if (!favoriteList.isEmpty()) {
-                    intentFavorite.putExtra("favorite", (Serializable) favoriteList);
+                    intentFavorite.putExtra("favorite", (Serializable) favoriteList);*/
                     startActivity(intentFavorite);
-                }
+               // }
 
                 return true;
             default:
@@ -99,8 +104,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void fillMealList(List<Meal> mealList) {
-        mealList.add(new Meal(R.drawable.schaschlik, "Schaschlik wie im Kaukasus grillen", "ein russisches Rezept, das sehr lecker und einfach zu machen ist.", "20 Minuten", "1 Tag", "1 Tag 20 Minuten", 4, "1 kg Fleisch (Nackenfleisch von Schwein, Rind oder Lamm), frisch\n" +
+    private void fillMealList() {
+
+
+
+        handler.addMeal(new Meal(R.drawable.schaschlik, "Schaschlik wie im Kaukasus grillen", "ein russisches Rezept, das sehr lecker und einfach zu machen ist.", "20 Minuten", "1 Tag", "1 Tag 20 Minuten", 4, "1 kg Fleisch (Nackenfleisch von Schwein, Rind oder Lamm), frisch\n" +
                 "3 Gemüsezwiebel(n)\n" +
                 "500 ml Milch\n" +
                 "1 Schuss Essig\n" +
@@ -114,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 "\n" +
                 "Dann das Fleisch auf Spieße ziehen und grillen. Kurz vor dem Verzehr mit Essigwasser beträufeln. Sehr lecker schmeckt auch, frische Zwiebelringe in leichtes Essigwasser einzulegen und zum Schaschlik servieren."));
 
-        mealList.add(new Meal(R.drawable.damlama, "Usbekischer Eintopf Damlama", "auch als Dimlama oder Basma - im Kaukasus als Adzhab-Sandal bekannt", "30 Minuten", "2 Stunden", "2 Stunden 30 Minuten", 6, "100 ml Pflanzenöl\n" +
+        handler.addMeal(new Meal(R.drawable.damlama,"Usbekischer Eintopf Damlama", "auch als Dimlama oder Basma - im Kaukasus als Adzhab-Sandal bekannt", "30 Minuten", "2 Stunden", "2 Stunden 30 Minuten", 6, "100 ml Pflanzenöl\n" +
                 "½ kg Lammfleisch\n" +
                 "5 Zwiebel(n)\n" +
                 "500 g Tomate(n)\n" +
@@ -135,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                 "Das Gemüse und die restlichen Zwiebeln in Scheiben schneiden. Sukzessive zunächst die Zwiebeln, dann die Karotten, den Paprika, die Tomaten- und die Auberginenscheiben auf das Fleisch schichten. Mit Weißkohlblättern abdecken und als nächstes die Kartoffelscheiben auflegen. Darauf die grob gehackten frischen Kräuter, die Knoblauchzehen und die beiden Chilischoten verteilen. Mit einer neuen Schicht Weißkohlblätter abschließen und den Topf möglichst dicht abdecken. Zunächst stark erhitzen bis die sich bildende Flüssigkeit hörbar aufkocht, dann auf die kleinste Stufe zurückschalten und alles in anderthalb bis zwei Stunden gar dünsten.\n" +
                 "\n" +
                 "Natürlich gibt es zahlreiche Zubereitungsvarianten. So können die Gemüse variiert oder auch Apfelscheiben oder Quitten zugegeben werden."));
-        mealList.add(new Meal(R.drawable.russische_sommersuppe,"Russische Sommersuppe","Akroschka - das bedeutet Krümel oder ganz fein","30 Minuten","4 Stunden","5 Stunden",6,"6 große Kartoffel(n)\n" +
+        handler.addMeal(new Meal(R.drawable.russische_sommersuppe,"Russische Sommersuppe","Akroschka - das bedeutet Krümel oder ganz fein","30 Minuten","4 Stunden","5 Stunden",6,"6 große Kartoffel(n)\n" +
                 "1 Ring/e Fleischwurst oder Geflügelwurst\n" +
                 "6 Ei(er)\n" +
                 "1 Bund Radieschen\n" +
@@ -151,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 "Alles in einen Topf geben und mit dem Wasser, Schmand, saurer Sahne und den Gewürzen mischen, abschmecken und dann kühl stellen. Die Akroschka muss 2 - 4 Stunden ruhen. Sie kann auch über Nacht im Kühlschrank stehen bleiben.\n" +
                 "\n" +
                 "Dann wird sie einfach wie Suppe gegessen. Kühl - genau richtig für den Sommer."));
-        mealList.add(new Meal(R.drawable.russischer_hackfleischtopf,"Russischer Hackfleischtopf","Russischer Hackfleischtopf","20 Minuten","25 Minuten"," 45 Minuten",4,"500 g Rinderhackfleisch\n" +
+        handler.addMeal(new Meal(R.drawable.russischer_hackfleischtopf,"Russischer Hackfleischtopf","Russischer Hackfleischtopf","20 Minuten","25 Minuten"," 45 Minuten",4,"500 g Rinderhackfleisch\n" +
                 "2 Zwiebel(n)\n" +
                 "1 EL Öl\n" +
                 "1 EL Butter\n" +
@@ -164,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 "n. B. saure Sahne","Was an dem Gericht russisch sein soll, ist mir schleierhaft, aber es ist super einfach zu machen und schmeckt hervorragend.\n" +
                 "\n" +
                 "Zwiebeln schälen und würfeln, Lauch putzen, waschen und in Ringe schneiden. Öl und Butter in einem Topf erhitzen, die Zwiebelwürfel darin anbraten. Die Hitze erhöhen und das Hackfleisch darin krümelig braten. Bei jetzt wieder niedrigerer Hitze den Lauch, das Tomatenmark, die Brühe, Senf und die Gewürze dazugeben. Ca. 15 Minuten schmoren, dabei häufig umrühren. Die saure Sahne kurz vor dem Servieren unterrühren und alles nochmal kräftig abschmecken."));
-        mealList.add(new Meal(R.drawable.kartoffelsalat,"Kartoffelsalat","gesamtdeutscher Kartoffelsalat, weil wenig Mayo und auch Brühe vorhanden sind. Anfängertaugliches Grundrezept.","30 Minuten","30 Minuten","3 Stunden",6,"2 kg Kartoffeln, festkochend\n" +
+        handler.addMeal(new Meal(R.drawable.kartoffelsalat,"Kartoffelsalat","gesamtdeutscher Kartoffelsalat, weil wenig Mayo und auch Brühe vorhanden sind. Anfängertaugliches Grundrezept.","30 Minuten","30 Minuten","3 Stunden",6,"2 kg Kartoffeln, festkochend\n" +
                 "1 m.-große Zwiebel(n), feinst gewürfelt\n" +
                 "250 ml Gemüsebrühe oder Geflügelbrühe\n" +
                 "3 EL Weißweinessig, milder, z.B. Marc de Champagner Essig\n" +
@@ -178,6 +186,10 @@ public class MainActivity extends AppCompatActivity {
                 "Dies ist ein Grundrezept. Im Sommer mach ich das gerne mit getrockneten und dann eingelegten Tomaten,in Stückchen geschnitten), fein geschnittener Frühlingszwiebel, Radieschenscheiben oder auch Olivenstückchen. Geht auch prima mit Steak- oder Bratenresten, frischen Kräutern oder auch quer durch den Kühlschrank - etwas Paprika, Tomate, Gurkenstücke etc..\n" +
                 "\n" +
                 "Meine Fußballer mögen den einfach nur so zum Braten oder Schnitzel, aber der Salat lädt zum \"Spielen\" ein."));
+
+
+
+
 
     }
 }

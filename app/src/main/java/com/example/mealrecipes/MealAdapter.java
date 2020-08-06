@@ -42,7 +42,13 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealHolder> {
         holder.mealName.setText(mealList.get(position).getMealName());
         holder.mealDescription.setText(mealList.get(position).getMealDescription());
         holder.mealtime.setText(mealList.get(position).getArbeitzeit());
-
+   if(mealList.get(position).isStarred()){
+       holder.star.setVisibility(View.INVISIBLE);
+       holder.star_filled.setVisibility((View.VISIBLE));
+   }else {
+       holder.star.setVisibility(View.VISIBLE);
+       holder.star_filled.setVisibility((View.INVISIBLE));
+   }
     }
 
     //узнает сколько блоков в итоге у нас будет
@@ -59,12 +65,14 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealHolder> {
         TextView mealtime;
 
 
+
         public MealHolder(@NonNull View itemView, final RecyclerOnClickListener listener) {
             super(itemView); //example;
             imageView = itemView.findViewById(R.id.image);
             mealName = itemView.findViewById(R.id.mealName);
             mealDescription = itemView.findViewById(R.id.mealDescription);
             mealtime = itemView.findViewById(R.id.mealtime);
+
             star = itemView.findViewById(R.id.star_empty);
             star_filled=itemView.findViewById(R.id.star_filled);
             star.setOnClickListener(new View.OnClickListener() {
